@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Processing</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Image Processing</h1>
+    <form id="imageForm">
+        <input type="file" accept="image/*" capture="camera" id="imageInput" name="image" style="display:none;">
+        <img id="capturedImage" alt="Captured Image" style="display:none; max-width: 90%;">
+        <button type="button" onclick="captureImage()" id="captureButton">
+            <img src="{{ url_for('static', filename='camera.png') }}" alt="Capture Image" style="max-width: 100%; height: auto;">
+        </button>
+        <button type="button" onclick="processImage()" style="display:none;" id="processButton">Process Image</button>
+    </form>
+    <!-- Add this inside the result div in your index.html file -->
+    <h3 id="Loading" style="display: none;">Loading...</h3>
+    <div id="result" style="display: none;">
+        <h2>Processed Data</h2>
+        <table>
+            <tbody id="tableBody">
+                <!-- Table rows will be dynamically added here -->
+            </tbody>
+        </table>
+    </div>
+
+
+    <script src="{{ url_for('static', filename='scripts.js') }}"></script>
+</body>
+</html>
