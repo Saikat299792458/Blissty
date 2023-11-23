@@ -1,32 +1,12 @@
+# Cetrion 2023
+
 from flask import Flask, render_template, request, jsonify
-import cv2
-import numpy as np
+from datetime import datetime
+from functions import functions
+
 
 app = Flask(__name__)
-
-def process_image(image_path):
-    # Load the image
-    img = cv2.imread(image_path)
-
-    # Check if the image has an alpha channel
-    if img.shape[2] == 3:
-        # Image doesn't have an alpha channel, set transparency to N/A or any desired value
-        transparency = 'N/A'
-    else:
-        # Extract Transparency values
-        transparency = np.mean(img[:, :, 3])
-
-    # Extract RGBA values
-    rgba_values = {
-        '1.Red': np.mean(img[:, :, 2]),
-        '2.Green': np.mean(img[:, :, 1]),
-        '3.Blue': np.mean(img[:, :, 0]),
-        '4.Alpha': transparency,
-        '5.Intensity': np.mean(cv2.cvtColor(img, cv2.COLOR_BGR2GRAY))
-    }
-
-    return rgba_values
-
+inst = functions()
 
 @app.route('/')
 def index():
@@ -36,12 +16,21 @@ def index():
 def process_image_route():
     if 'image' not in request.files:
         return jsonify({'error': 'No image provided'})
-
+    
     image = request.files['image']
-    image_path = 'static/uploads/uploaded_image.png'
-    image.save(image_path)
 
-    rgba_values = process_image(image_path)
+    # Generate timestamps
+    time = datetime.now()
+    filename = time.strftime('%Y%m%d%H%M%S') + '.png'
+    timestamp = time.strftime('%Y/%m/%d %I:%M:%S %p')
+    
+    # Save the uploaded image
+    image.save(inst.path + filename)
+
+    rgba_values = inst.process_image(filename)
+    
+    # Log the processed data
+    inst.update_excel_file(timestamp, request.user_agent.string, filename)
 
     return jsonify(rgba_values)
 
