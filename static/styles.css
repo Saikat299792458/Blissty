@@ -24,6 +24,7 @@ button {
     margin-top: 10px;
     cursor: pointer;
     max-width: 90%;
+    margin-bottom: 10px;
 }
 
 #result {
@@ -48,4 +49,14 @@ button {
 
 #result td:first-child {
     text-align: left; /* Align the first column to the left */
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+
+label {
+    margin-bottom: 5px;
 }

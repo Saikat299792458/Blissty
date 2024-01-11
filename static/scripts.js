@@ -24,6 +24,13 @@ function captureImage() {
 }
 
 function processImage() {
+    // Check if the device model name is empty
+    const modelName = document.getElementById('modelName').value.trim();
+    if (modelName === '') {
+        alert('Please enter the device model name.');
+        return;
+    }
+
     // Hide table and start loading
     document.getElementById('Loading').style.display = 'block';
     // Get form data
@@ -41,6 +48,7 @@ function processImage() {
     })
     .catch(error => console.error('Error:', error));
 }
+
 
 
 function updateTable(data) {

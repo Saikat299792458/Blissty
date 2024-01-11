@@ -16,21 +16,25 @@ def index():
 def process_image_route():
     if 'image' not in request.files:
         return jsonify({'error': 'No image provided'})
-    
+
+    if 'modelName' not in request.form:
+        return jsonify({'error': 'No model name provided'})
+
     image = request.files['image']
+    model_name = request.form['modelName']
 
     # Generate timestamps
     time = datetime.now()
     filename = time.strftime('%Y%m%d%H%M%S') + '.png'
     timestamp = time.strftime('%Y/%m/%d %I:%M:%S %p')
-    
+
     # Save the uploaded image
     image.save(inst.path + filename)
 
     rgba_values = inst.process_image(filename)
-    
-    # Log the processed data
-    inst.update_excel_file(timestamp, request.user_agent.string, filename)
+
+    # Log the processed data with the provided model name
+    inst.update_excel_file(timestamp, model_name, filename)
 
     return jsonify(rgba_values)
 
