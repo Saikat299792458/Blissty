@@ -23,7 +23,7 @@ form {
 button {
     margin-top: 10px;
     cursor: pointer;
-    max-width: 90%;
+    max-width: 80%;
     margin-bottom: 10px;
 }
 
@@ -55,6 +55,8 @@ button {
     display: flex;
     flex-direction: column;
     margin-bottom: 15px;
+    align-items: center;
+    justify-content: center;
 }
 
 label {

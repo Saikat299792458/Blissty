@@ -8,7 +8,7 @@ function captureImage() {
     imageInput.addEventListener('change', function () {
         capturedImage.src = URL.createObjectURL(imageInput.files[0]);
         capturedImage.style.display = 'block';
-        capturedImage.style.width = '100%';
+        capturedImage.style.width = '80%';
         capturedImage.style.height = 'auto';
 
         // Change "Capture Image" button to "Recapture" button style
@@ -28,6 +28,13 @@ function processImage() {
     const modelName = document.getElementById('modelName').value.trim();
     if (modelName === '') {
         alert('Please enter the device model name.');
+        return;
+    }
+
+    // Check if the Optical Condition box is empty
+    const OC = document.getElementById('opticalCondition').value.trim();
+    if (OC === '') {
+        alert('Please enter the Optical Condition.');
         return;
     }
 

@@ -14,10 +14,14 @@
                 <label for="modelName">Device Model Name:</label>
                 <input type="text" id="modelName" name="modelName" required>
             </div>
+            <div class="form-group">
+                <label for="opticalCondition">Optical Condition:</label>
+                <input type="text" id="opticalCondition" name="opticalCondition" required>
+            </div>
             <input type="file" accept="image/*" capture="camera" id="imageInput" name="image" style="display:none;">
-            <img id="capturedImage" alt="Captured Image" style="display:none; max-width: 90%;">
+            <img id="capturedImage" alt="Captured Image" style="display:none; max-width: 80%;">
             <button type="button" onclick="captureImage()" id="captureButton">
-                <img src="{{ url_for('static', filename='camera.png') }}" alt="Capture Image" style="max-width: 100%; height: auto;">
+                <img src="{{ url_for('static', filename='camera.png') }}" alt="Capture Image" style="max-width: 80%; height: auto;">
             </button>
             <button type="button" onclick="processImage()" style="display:none;" id="processButton">Process Image</button>
         </form>

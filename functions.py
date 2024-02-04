@@ -16,11 +16,12 @@ class functions:
         # Read the existing data from the Excel file
         self.existing_data = pd.read_excel(self.excel_file_path)
     
-    def update_excel_file(self, timestamp, device_name, filename):
+    def update_excel_file(self, timestamp, device_name, optical_condition, filename):
         # Create a DataFrame with the new data
         new_data = pd.DataFrame({
             'Timestamp': [timestamp],
             'Device Name': [device_name],
+            'Optical Condition': [optical_condition],
             'Red': [self.Red],
             'Green': [self.Green],
             'Blue': [self.Blue],
@@ -38,6 +39,7 @@ class functions:
 
         except Exception as e:
             print(f"Error updating Excel file: {e}")
+
         
 
     def process_image(self, filename):
