@@ -21,10 +21,14 @@ def process_image_route():
     
     if 'opticalCondition' not in request.form:
         return jsonify({'error': 'No optical condition provided'})
+    
+    if 'colorName' not in request.form:
+        return jsonify({'error': 'No Color Name provided'})
 
     image = request.files['image']
     model_name = request.form['modelName']
     optical_condition = request.form['opticalCondition']
+    color_name = request.form['colorName']
 
     # Generate timestamps
     time = datetime.now()
@@ -37,7 +41,7 @@ def process_image_route():
     rgba_values = inst.process_image(filename)
 
     # Log the processed data with the provided model name
-    inst.update_excel_file(timestamp, model_name, optical_condition, filename)
+    inst.update_excel_file(timestamp, model_name, optical_condition, color_name, filename)
 
     return jsonify(rgba_values)
 

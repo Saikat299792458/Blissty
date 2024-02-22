@@ -38,6 +38,13 @@ function processImage() {
         return;
     }
 
+    // Check if the Color Name box is empty
+    const CN = document.getElementById('colorName').value.trim();
+    if (CN === '') {
+        alert('Please enter the Color Name.');
+        return;
+    }
+
     // Hide table and start loading
     document.getElementById('Loading').style.display = 'block';
     // Get form data

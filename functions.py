@@ -16,12 +16,13 @@ class functions:
         # Read the existing data from the Excel file
         self.existing_data = pd.read_excel(self.excel_file_path)
     
-    def update_excel_file(self, timestamp, device_name, optical_condition, filename):
+    def update_excel_file(self, timestamp, device_name, optical_condition, colorName, filename):
         # Create a DataFrame with the new data
         new_data = pd.DataFrame({
             'Timestamp': [timestamp],
             'Device Name': [device_name],
             'Optical Condition': [optical_condition],
+            'Color Name': [colorName],
             'Red': [self.Red],
             'Green': [self.Green],
             'Blue': [self.Blue],
